@@ -31,21 +31,65 @@
                 @endforeach
             @endif
         </div>
+    </div>
 
-        {{-- Added the text field and a button in the form. --}}
-        {{-- Form method set to POST and action url to {{route('todos.store')}}. --}}
-        <div class="text-center mt-5">
-            <h2>Add Todo</h2>
+    {{-- Added the text field and a button in the form.
+    Form method set to POST and action url to {{route('todos.store')}}. --}}
+    <div class="text-center mt-5">
+        <h2>Add Todo</h2>
+        <form class="row g-3 justify-content-center" method="POST" action="{{ route('todos.store') }}">
+            @csrf
+            <div class="col-6">
+                <input type="text" class="form-control" name="title" placeholder="Title">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </div>
+        </form>
+    </div>
 
-            <form class="row g-3 justify-content-center" method="POST" action="{{ route('todos.store') }}">
-                @csrf
-                <div class="col-6">
-                    <input type="text" class="form-control" name="title" placeholder="Title">
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
-                </div>
-            </form>
+    <div class="text-center">
+        <h2>All Todos</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Created at</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- Looping through each todos using foreach PHP function. --}}
+                        @foreach ($todos as $index => $todo)
+                            <tr>
+                                {{-- Incrementing the counter itself by using $index + 1. --}}
+                                <th>{{ $index + 1 }}</th>
+                                {{-- Loading the title of the todo item by $todo->title. --}}
+                                <td>{{ $todo->title }}</td>
+                                <td>{{ $todo->created_at }}</td>
+                                <td>
+                                    {{-- If $todo->is_completed is 1 then show complete and if its 0 then show not complete. --}}
+                                    @if ($todo->is_completed)
+                                        <div class="badge bg-success">Completed</div>
+                                    @else
+                                        <div class="badge bg-warning">Not Completed</div>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{-- To able to call the edit function passing the todo id which we want to edit. --}}
+                                    <a href="{{ route('todos.edit', ['todo' => $todo->id]) }}"
+                                        class="btn btn-info">Edit</a>
+                                    <a class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

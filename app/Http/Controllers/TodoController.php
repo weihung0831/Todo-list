@@ -15,7 +15,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        // Get all the todos in our index function.
         $todos = Todo::all();
         return view('todo', compact('todos'));
     }
@@ -70,7 +70,9 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Have id being passed, that id will be basically id of the todo item which details we want to load.
+        $todo = Todo::where('id', $id)->first();
+        return view('edit-todo', compact('todo'));
     }
 
     /**
