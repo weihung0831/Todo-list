@@ -85,6 +85,17 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), ['title' => 'required']);
+        if ($validator->fails()) {
+            return redirect()->route('todos.edit', ['todo' => $id])->withErrors($validator);
+        }
+
+        // Saving the title and the selected is_completed status using laravel save() function and redirecting back to the index function.
+        $todo = Todo::where('id', $id)->first();
+        $todo->title = $request->get('title');
+        $todo->is_completed = $request->get('is_completed');
+        $todo->save();
+        return redirect()->route('todos.index')->with('success', 'Updated');
     }
 
     /**
