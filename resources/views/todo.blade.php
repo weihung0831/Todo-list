@@ -14,7 +14,11 @@
 </head>
 
 <body>
-    {{-- Capturing the errors and success messages. --}}
+    {{-- Here is the explanation for the code:
+    1. We use the @if directive to check if the session has a success key.
+    2. If it has, we display the success message in an alert box.
+    3. If the session does not have a success key, we check if the errors bag has any error messages.
+    4. If it has, we loop through the error messages and display them in an alert box.  --}}
     <div class="row justify-content-center mt-5">
         <div class="col-lg-6">
             @if (session()->has('success'))
@@ -37,6 +41,7 @@
     Form method set to POST and action url to {{route('todos.store')}}. --}}
     <div class="text-center mt-5">
         <h2>Add Todo</h2>
+        {{-- Added a CSRF token to the form to prevent Cross-Site Request Forgery attacks. --}}
         <form class="row g-3 justify-content-center" method="POST" action="{{ route('todos.store') }}">
             @csrf
             <div class="col-6">
