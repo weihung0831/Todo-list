@@ -114,8 +114,15 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /* Here is the explanation for the code:
+    1. I am using the model Todo that I created earlier and calling the method where() to get the row with the id that matches the id that was passed into the method.
+    2. I am using the method delete() to delete the row from the database.
+    3. I am redirecting the user back to the index page using the route() helper method and passing in the name of the route as the first parameter.
+    4. I am using the with() method to pass a success message that will be displayed to the user. */
     public function destroy($id)
     {
-        //
+        Todo::where('id', $id)->delete();
+        return redirect()->route('todos.index')->with('success', 'Deleted');
     }
 }

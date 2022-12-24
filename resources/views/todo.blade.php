@@ -88,7 +88,8 @@
                                     {{-- To able to call the edit function passing the todo id which we want to edit. --}}
                                     <a href="{{ route('todos.edit', ['todo' => $todo->id]) }}"
                                         class="btn btn-info">Edit</a>
-                                    <a class="btn btn-danger">Delete</a>
+                                    <a href="{{ route('todos.destroy', ['todo' => $todo->id]) }}"
+                                        class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
