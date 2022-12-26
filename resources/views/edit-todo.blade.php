@@ -35,8 +35,8 @@
     {{-- We are loading the title using $todo->title  --}}
     <form method="POST" action="{{ route('todos.update', ['todo' => $todo->id]) }}">
         @csrf
-        {{-- Use the PUT method we can pass POST as the method and in body of form add method_field('PUT') 
-        which will allow us to use PUT method. --}}
+        {{-- Use the PUT method we can pass POST as the method and in body of form add method_field('PUT')
+    which will allow us to use PUT method. --}}
         {{ method_field('PUT') }}
 
         <div class="row justify-content-center mt-5">
@@ -47,9 +47,9 @@
                         value="{{ $todo->title }}">
                 </div>
 
-                {{-- Status with select field in which have conditional rendering that if $todo->is_completed is 1 
-                then select the select option Complete as selected and if the $todo->is_completed is 0 
-                then select the select option Not Complete. --}}
+                {{-- Status with select field in which have conditional rendering that if $todo->is_completed is 1
+            then select the select option Complete as selected and if the $todo->is_completed is 0
+            then select the select option Not Complete. --}}
                 <div class="mb-3">
                     <label class="form-label">Status</label>
                     <select name="is_completed" id="" class="form-control">
