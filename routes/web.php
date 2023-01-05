@@ -20,5 +20,5 @@ Route::get('/', function () {
 
 Route::resource('todos', TodoController::class);
 
-// add the following code in the routes/web.php file to do destroy the todo
+// Add the following code in the routes/web.php file to do destroy the todo
 Route::get('todos/{todo}', [TodoController::class, 'destroy'])->name('todos.destroy');
