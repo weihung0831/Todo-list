@@ -19,7 +19,9 @@ class TodoController extends Controller
     2. Next we pass the retrieved todos to the todo view. */
     public function index()
     {
-        $todos = Todo::all();
+        // $todos = Todo::all();
+        $todos = Todo::where('is_completed', 0)->paginate(5);
+        // dd($todos);
         return view('todo', compact('todos'));
     }
 
