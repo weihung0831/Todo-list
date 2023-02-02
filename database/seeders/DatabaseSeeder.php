@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $count = 1;
-        while ($count > 0) {
+        while ($count <= 100) {
             Todo::create([
                 'id' => $count,
                 'title' => 'Test',

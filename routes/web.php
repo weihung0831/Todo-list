@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::resource('todos', TodoController::class);
-
 // Add the following code in the routes/web.php file to do destroy the todo
 Route::get('todos/{todo}', [TodoController::class, 'destroy'])->name('todos.destroy');

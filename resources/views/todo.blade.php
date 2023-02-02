@@ -11,7 +11,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-
 </head>
 
 <body>
@@ -100,26 +99,10 @@
         </div>
     </div>
 
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group me-2" role="group" aria-label="First group">
-            @if ($todos->currentPage() == 1)
-                <button type="button" class="btn btn-primary"><a
-                        href="{{ $todos->previousPageUrl() }}">上一頁</a></button>
-                <button type="button" class="btn btn-primary"><a
-                        href="{{ $todos->previousPageUrl() }}">{{ $todos->currentPage() }}</a></button>
-                <button type="button" class="btn btn-primary"><a
-                        href="{{ $todos->nextPageUrl() }}">{{ $todos->currentPage() + 1 }}</a></button>
-                <button type="button" class="btn btn-primary"><a href="{{ $todos->nextPageUrl() }}">下一頁</a></button>
-            @endif
-            @if ($todos->currentPage() >= $todos->lastPage())
-                <button type="button" class="btn btn-primary"><a
-                        href="{{ $todos->previousPageUrl() }}">上一頁</a></button>
-                <button type="button" class="btn btn-primary"><a
-                        href="{{ $todos->previousPageUrl() }}">{{ $todos->currentPage() - 1 }}</a></button>
-                <button type="button" class="btn btn-primary"><a
-                        href="{{ $todos->nextPageUrl() }}">{{ $todos->currentPage() }}</a></button>
-                <button type="button" class="btn btn-primary"><a href="{{ $todos->nextPageUrl() }}">下一頁</a></button>
-            @endif
+    {{-- Added the pagination links. --}}
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-6">
+            {{ $todos->links() }}
         </div>
     </div>
 
