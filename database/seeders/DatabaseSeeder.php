@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Todo;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $count = 1;
+        while ($count > 0) {
+            Todo::create([
+                'id' => $count,
+                'title' => 'Test',
+                'is_completed' => rand(0, 1),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            $count++;
+        }
     }
 }
